@@ -40,11 +40,10 @@ Users can leverage `./utils/templateFileCreator.py` to create a template file.
 
 Run the script and use the `-n` or `--name` flag to pass the question name (copied directly from LeetCode)
 
-> [!IMPORTANT]
-> In order for the script to work as expected, users must run this script in "leets/" folder
-
 ```bash
 $ python3 utils/templateFileCreator.py -n "36. Valid Sudoku"
 ```
-
 </div>
+
+> [!IMPORTANT]
+> In order for the script to work as expected, users must run this script in `leets/` folder
