@@ -2,7 +2,7 @@
 Name: Validate Binary Search Tree (#98)
 URL: <Add question link here>
 
-# Iterative
+# Recursive + Iterative check
 Time Complexity: O(N)
 Space Complexity: O(N)
 
@@ -45,7 +45,7 @@ class Solution:
 
 
     def isValidBST(self, root: Optional[TreeNode]) -> bool:
-        # # Iterative Solution
+        # # Recursive + Iterative check Solution
         # # IMP: Inorder traversal of BST is always sorted.
         # if not root: return True
         # arrayToTest = self.getInorderTraversal(root, [])
