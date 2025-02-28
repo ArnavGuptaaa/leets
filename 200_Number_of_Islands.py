@@ -56,7 +56,6 @@ class Solution:
                     (newRowIdx, newColIdx) not in visited
                 ):
                     visited.add((newRowIdx, newColIdx))
-                    grid[newRowIdx][newColIdx] == '0'
                     nodeQueue.append((newRowIdx, newColIdx))
         
 
