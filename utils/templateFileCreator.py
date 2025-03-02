@@ -1,4 +1,5 @@
 import argparse
+import os
 
 # Configure parameters
 parser = argparse.ArgumentParser()
@@ -7,7 +8,7 @@ parser.add_argument("-n", "--name", type=str, required=True)
 # Parse arguments
 args = parser.parse_args()
 
-# Basic Validation
+# File Name Validation
 fileName = args.name.strip()
 if fileName == "":
     raise Exception("invalid file name")
@@ -20,6 +21,15 @@ questionName = fileName.split('.')[1].strip()
 fileName = "_".join(fileName.replace(".", "").split(" "))
 fileName += ".py"
 
+# Define the target directory
+targetDirectory = "./"
+
+filePath = os.path.join(targetDirectory, fileName)
+
+# Check if file already exists in the target directory
+if os.path.exists(filePath):
+    raise Exception(f"'{filePath}' already exists")
+
 headerTemplate = f"""\"\"\"
 Name: {questionName} (#{questionNumber})
 URL: <Add question link here>
@@ -30,6 +40,6 @@ Space Complexity: O(?)
 """
 
 # Create and write to file
-with open(f'./{fileName}', 'w') as file:
+with open(filePath, 'w') as file:
     file.write(headerTemplate)
     file.close()
