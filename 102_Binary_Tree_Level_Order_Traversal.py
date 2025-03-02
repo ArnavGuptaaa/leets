@@ -2,8 +2,8 @@
 Name: Binary Tree Level Order Traversal (#102)
 URL: <Add question link here>
 
-Time Complexity: O(?)
-Space Complexity: O(?)
+Time Complexity: O(N)
+Space Complexity: O(N) [Since perfect binary tree could have about N/2 nodes in the last level]
 """
 
 class Solution:        
