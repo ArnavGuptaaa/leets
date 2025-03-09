@@ -1,6 +1,6 @@
 """
 Name: Validate Binary Search Tree (#98)
-URL: <Add question link here>
+URL: https://leetcode.com/problems/validate-binary-search-tree
 
 # Recursive + Iterative check
 Time Complexity: O(N)

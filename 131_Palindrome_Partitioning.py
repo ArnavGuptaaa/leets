@@ -1,6 +1,6 @@
 """
 Name: Palindrome Partitioning (#131)
-URL: <Add question link here>
+URL: https://leetcode.com/problems/palindrome-partitioning/
 
 Time Complexity: O(N*2^N)
 Space Complexity: O(2^N)
