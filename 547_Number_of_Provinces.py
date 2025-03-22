@@ -65,7 +65,7 @@ class Solution:
 
 """
 Time Complexity: O(N^2)
-Space Complexity: O(N)
+Space Complexity: O(N^2)
 """
 
 class Solution:
