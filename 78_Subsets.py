@@ -2,8 +2,8 @@
 Name: Subsets (#78)
 URL: https://leetcode.com/problems/subsets/
 
-Time Complexity: O(2^N)
-Space Complexity: O(N)
+Time Complexity: O(N*2^N)
+Space Complexity: O(N + 2^N) 
 """
 
 class Solution:
