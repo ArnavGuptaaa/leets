@@ -1,9 +1,9 @@
 """
 Name: Recover a Tree From Preorder Traversal (#1028)
-URL: <Add question link here>
+URL: https://leetcode.com/problems/recover-a-tree-from-preorder-traversal/
 
-Time Complexity: O(?)
-Space Complexity: O(?)
+Time Complexity: O(N)
+Space Complexity: O(nodes) 
 """
 
 class Solution:
