@@ -1,44 +1,64 @@
 """
 Name: House Robber (#198)
 URL: https://leetcode.com/problems/house-robber/
-
-Time Complexity: O(N)
-Space Complexity: O(N)
 """
 
 class Solution:
     def rob(self, nums: List[int]) -> int:
-        cache = [-1] * len(nums)
+        cache = [-1] * (len(nums) + 1)
         
-        # ===
-        def tabulated_rob():
-            if len(nums) == 1:
-                return nums[0]
-
-            cache[0] = nums[0]
-            cache[1] = max(nums[1], nums[0])
-
-            for idx in range(2, len(nums)):
-                cache[idx] = max(cache[idx - 2] + nums[idx], cache[idx - 1])
-
-            return cache[len(nums) - 1]
-
-        # ===
-        def memoized_rob(house):
-            if house >= len(nums):
+        """
+        Time Complexity: O(N)
+        Space Complexity: O(N + N)
+        """
+        def memo_rob(idx):
+            if idx >= len(nums):
                 return 0
 
-            if cache[house] != -1:
-                return cache[house]
+            if cache[idx] != -1:
+                return cache[idx]
 
-            rob_house = memoized_rob(house + 2) + nums[house]
-            spare_house = memoized_rob(house + 1)
+            rob = nums[idx] + memo_rob(idx + 2)
+            spare = memo_rob(idx + 1)
 
-            max_robbed = max(rob_house, spare_house)
+            cache[idx] = max(rob, spare)
+            return cache[idx]
 
-            cache[house] = max_robbed
-            return max_robbed
-        
-        # ===
-        # return memoized_rob(0)
-        return tabulated_rob()
+
+        """
+        Time Complexity: O(N)
+        Space Complexity: O(N)
+        """
+        def tab_rob():
+            cache[0] = nums[0]
+            cache[1] = max(nums[0], nums[1]) if len(nums) > 1 else nums[0]
+
+            for idx in range(2, len(nums)):
+                cache[idx] = max(nums[idx] + cache[idx - 2], cache[idx - 1])
+
+            return cache[len(nums) - 1]            
+
+        """
+        Time Complexity: O(N)
+        Space Complexity: O(1)
+        """
+        def so_rob():
+            prev2 = nums[0]
+            prev = max(nums[0], nums[1]) if len(nums) > 1 else nums[0]
+
+            for idx in range(2, len(nums)):
+                result = max(nums[idx] + prev2, prev)
+
+                prev2 = prev
+                prev = result
+
+            return prev
+
+        # Memoized
+        return memo_rob(0)
+
+        # Tabulated
+        return tab_rob()
+
+        # Space optimized
+        return so_rob()
