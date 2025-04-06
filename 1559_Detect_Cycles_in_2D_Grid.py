@@ -2,8 +2,8 @@
 Name: Detect Cycles in 2D Grid (#1559)
 URL: https://leetcode.com/problems/detect-cycles-in-2d-grid/
 
-Time Complexity: O(?)
-Space Complexity: O(?)
+Time Complexity: O(MN + 4MN)
+Space Complexity: O(MN)
 """
 
 class Solution:
