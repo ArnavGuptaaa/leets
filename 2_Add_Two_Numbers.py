@@ -8,29 +8,24 @@ Space Complexity: O(N)
 
 class Solution:
     def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
-        carry = False
+        dummy = ListNode()
 
-        temp1 = l1
-        temp2 = l2
+        temp = dummy
 
-        while temp1 or temp2:
+        carry = 0
+        while l1 or l2 or carry:
+
+            num1 = l1.val if l1 else 0
+            num2 = l2.val if l2 else 0
+
+            add = (num1 + num2 + carry) % 10
+            carry = (num1 + num2 + carry) // 10
+
+            new_node = ListNode(add)
+            temp.next = new_node
+            temp = temp.next
             
-            digit1 = temp1.val if temp1 else 0
-            digit2 = temp2.val if temp2 else 0
+            l1 = l1.next if l1 else l1
+            l2 = l2.next if l2 else l2
 
-
-            nodeSum = digit1 + digit2 + 1 if carry else digit1 + digit2
-            carry = nodeSum >= 10
-
-            temp1.val = nodeSum % 10
-            
-            # If next node on temp1 does not exist
-            # but next node exists on temp2, or theres a carry
-            # then create a new node on temp1
-            if ((not temp1.next) and ((temp2 and temp2.next) or carry)): 
-                temp1.next = ListNode(0)
-
-            temp1 = temp1.next
-            temp2 = temp2.next if temp2 else temp2
-            
-        return l1
+        return dummy.next
