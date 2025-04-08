@@ -6,7 +6,6 @@ Time Complexity: O(V + E)
 Space Complexity: O(V)
 """
 
-from typing import Optional
 class Solution:
     def cloneGraph(self, node: Optional['Node']) -> Optional['Node']:
         clones = {}
@@ -26,6 +25,27 @@ class Solution:
                 clonedNode.neighbors.append(dfs(neighbor))
             
             return clonedNode
+
+        def bfs(node):
+            dq = deque()
+            dq.append(node)
+
+            cloned_nodes = {}
+            cloned_nodes[node.val] = Node(node.val)
+
+            while dq:
+                n = dq.popleft()
+
+                for nei in n.neighbors:
+
+                    if nei.val not in cloned_nodes:
+                        cloned_nodes[nei.val] = Node(nei.val)
+                        dq.append(nei)
+
+                    cloned_nodes[nei.val].neighbors.append(cloned_nodes[n.val])
+
+            return cloned_nodes[node.val]
         
         # ===
-        return dfs(node)
+        return bfs(node)
+        # return dfs(node)
