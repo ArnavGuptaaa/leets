@@ -32,6 +32,10 @@ URL: https://leetcode.com/problems/[problem-name]/
 Time Complexity: O(?)
 Space Complexity: O(?)
 """
+
+class Solution:
+    def function(self, *args):
+        pass
 ```
 
 ### Geeks For Geeks
