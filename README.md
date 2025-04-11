@@ -14,6 +14,8 @@ This repository contains my solutions to various LeetCode problems.
 
 ## Structure
 
+### Leetcode
+
 Every file must be named in an underscore-separated format as shown below.
 
 ```txt
@@ -25,6 +27,26 @@ Each problem is stored as a separate `.py` file with the following format:
 ```python
 """
 Name: [Problem Name] (#Problem Number)
+URL: https://leetcode.com/problems/[problem-name]/
+
+Time Complexity: O(?)
+Space Complexity: O(?)
+"""
+```
+
+### Geeks For Geeks
+
+Every file must be named in an underscore-separated format as shown below.
+
+```txt
+The_Celebrity_Problem.py
+```
+
+Each problem is stored as a separate `.py` file with the following format:
+
+```python
+"""
+Name: [Problem Name]
 URL: https://leetcode.com/problems/[problem-name]/
 
 Time Complexity: O(?)
@@ -44,13 +66,19 @@ class Solution:
 
 Users can leverage `./utils/templateFileCreator.py` to create a template file.
 
-Run the script and use the `-n` or `--name` flag to pass the question name (copied directly from LeetCode)
+1. Run the script and use the `-n` or `--name` flag to pass the question name (copied directly from LeetCode / GeeksForGeeks).
+
+2. Pass `-lc` flag for Leetcode problems or `-gfg` flag for GeeksForGeeks problems.
 
 > [!IMPORTANT]
 > In order for the script to work as expected, users must run this script in `leets/` folder
 
 ```bash
-$ python3 utils/templateFileCreator.py -n "36. Valid Sudoku"
+# Leetcode
+$ python3 utils/templateFileCreator.py -n "36. Valid Sudoku" -lc
+
+# GeeksForGeeks
+$ python3 utils/templateFileCreator.py -n "The Celebrity Problem" -gfg
 ```
 
 <!-- SCRIPT ENDS -->
