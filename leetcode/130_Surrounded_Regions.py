@@ -1,13 +1,10 @@
 """
 Name: Surrounded Regions (#130)
 URL: https://leetcode.com/problems/surrounded-regions/
-
-Time Complexity: O(M * N)
-Space Complexity: O(M * N)
 """
 
 class Solution:
-    # Traversing Board => O(M * N)
+    # Traversing Board => O(N^2)
     def prepareBoard(self, board):
         for rowIdx in range(len(board)):
             for colIdx in range(len(board[rowIdx])):
@@ -19,6 +16,10 @@ class Solution:
                 # All nodes except 'S' marked must be captured
                 board[rowIdx][colIdx] = 'X'
 
+    """
+    Time Complexity: O(M * N)
+    Space Complexity: O(M * N)
+    """
     # BFS Traversal => (M * N)
     def bfs(self, board, nodeQueue):
         directions = [
@@ -29,7 +30,7 @@ class Solution:
         ]
 
         while nodeQueue:
-            node = nodeQueue.pop(0)
+            node = nodeQueue.popleft()
 
             for direction in directions:
                 newRowIdx = node[0] + direction[0]
@@ -45,6 +46,32 @@ class Solution:
                     nodeQueue.append((newRowIdx, newColIdx))
 
 
+    """
+    Time Complexity: O(M * N)
+    Space Complexity: O(M * N)
+    """
+    def dfs(self, board, node):
+        directions = [
+            [-1, 0],
+            [0, -1],
+            [1, 0],
+            [0, 1],
+        ]
+        
+        for direction in directions:
+            newRowIdx = node[0] + direction[0]
+            newColIdx = node[1] + direction[1]
+
+            if(
+                0 <= newRowIdx < len(board) and 
+                0 <= newColIdx < len(board[0]) and 
+                board[newRowIdx][newColIdx] == 'O'
+            ):
+                # Mark every traversed node as 'S' (Save)
+                board[newRowIdx][newColIdx] = 'S'
+                self.dfs(board, (newRowIdx, newColIdx))
+
+
     def solve(self, board: List[List[str]]) -> None:
         """
         Do not return anything, modify board in-place instead.
@@ -53,7 +80,7 @@ class Solution:
         colLen = len(board[0])
 
         # visited set NOT required since we are marking all traversed node as 'S'
-        nodeQueue = []
+        nodeQueue = Deque()
 
         # Iterate over the edge of the matrix
         # Mark every node on the edge with 'S' (Save)
@@ -75,8 +102,12 @@ class Solution:
                 board[rowLen - 1][colIdx] = 'S'
                 nodeQueue.append((rowLen - 1, colIdx))
 
-        # Perform BFS on nodeQueue
+        # Solution 1 : Perform BFS on nodeQueue
         self.bfs(board, nodeQueue)
+
+        # Solution 2 : Perform DFS on nodeQueue
+        for node in nodeQueue:
+            self.dfs(board, node)
 
         # Turn every node that is NOT in visited set to 'X'
         self.prepareBoard(board)
