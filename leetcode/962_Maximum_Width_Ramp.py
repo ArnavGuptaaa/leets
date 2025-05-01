@@ -8,23 +8,23 @@ Space Complexity: O(N)
 
 class Solution:
     def maxWidthRamp(self, nums: List[int]) -> int:
-        stack = []
-        max_width = 0
+        max_right = [0] * len(nums)
+        max_so_far = 0
 
-        # Prepare stack with decreasing values
-        for idx, num in enumerate(nums):
-            if not stack:
-                stack.append(idx)
-                continue
+        for idx, num in enumerate(reversed(nums)):
+            idx = -1 - idx
 
-            if num < nums[stack[-1]]:
-                stack.append(idx)
+            max_so_far = max(max_so_far, num)
+            max_right[idx] = max_so_far
 
-        # Iterate from last to first index
-        for idx in range(len(nums) - 1, -1, -1):
-            while stack and nums[stack[-1]] <= nums[idx]:
-                popped_idx = stack.pop()
+        result = 0
+        left = right = 0
+        
+        while right < len(nums):
+            while nums[left] > max_right[right]:
+                left += 1
 
-                max_width = max(max_width, idx - popped_idx)
+            result = max(result, right - left)
+            right += 1
 
-        return max_width
+        return result
