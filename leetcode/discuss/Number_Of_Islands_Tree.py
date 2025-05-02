@@ -16,15 +16,15 @@ class Solution:
     
     def dfs(self, node):
         if not node:
-            return
+            return 0
         
         if node.val != 1:
-            return
+            return 0
 
+        count = 1 + self.dfs(node.left) + self.dfs(node.right)
         node.val = 0
-        
-        self.dfs(node.left)
-        self.dfs(node.right)
+
+        return count
 
     def number_of_islands(self, root):
         if not root:
@@ -34,7 +34,8 @@ class Solution:
 
         if root.val == 1:
             count = 1
-            self.dfs(root)
+            
+            print(self.dfs(root))
 
         islands_left = self.number_of_islands(root.left)
         islands_right = self.number_of_islands(root.right)
