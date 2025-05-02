@@ -92,7 +92,6 @@ test_cases = [
     (TreeNode(0), []),  # Expected: No islands
 ]
 
-# Running the test cases
 sol = Solution()
 
 for i, (root, expected) in enumerate(test_cases, 1):
