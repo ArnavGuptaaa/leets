@@ -98,4 +98,28 @@ class Solution:
                 result += 1
 
         return result
-        
+
+"""
+Time Complexity: O(N^2)
+Space Complexity: O(N) [For visited]
+"""
+class Solution:
+    def findCircleNum(self, isConnected: List[List[int]]) -> int:
+        def dfs(city):
+            if city in seen:
+                return
+
+            seen.add(city)
+
+            for edge_city in range(len(isConnected)):
+                if isConnected[city][edge_city] == 1:
+                    dfs(edge_city)
+
+        seen = set()
+        result = 0
+        for city in range(len(isConnected)):
+            if city not in seen:
+                result += 1
+                dfs(city)
+
+        return result
